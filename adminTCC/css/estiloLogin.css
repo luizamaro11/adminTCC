@@ -1,0 +1,32 @@
+.box{
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 15%;
+	width: 50%;
+	padding: 20px;
+	background-color: rgba(0,0,0,0.8);
+	border-radius: 10px;
+	border: 2px solid #58aedf;
+	box-shadow: 6px 6px 7px 0px rgba(0,0,0,0.68);
+}
+#entrar{
+	margin-top: 2%;
+	background-color: #fb4f3b;
+	color: white;
+}
+label{
+	margin-top: 10px;
+	color:white;
+}
+h1{
+	color: white;
+	text-align: center;
+}
+body{
+	background-size: cover;
+}
+.link{
+	text-align: right;
+	padding: 8px;
+	color: white;
+}

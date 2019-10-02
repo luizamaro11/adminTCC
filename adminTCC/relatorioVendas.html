@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Relatorio de Funcionario</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/estilo.css">
+
+</head>
+<body>
+    <div class="container-fluid">           
+        <div class="row linhaHeader">
+            <div class="col-md-12 cabecalho">
+                <img src="imagens/logo1.png" class="logo">
+                <ul>
+                  <li><a href="mesas.html">Mesas</a></li>
+                  <li><a href="funcionario.html">Funcionário</a></li>
+                  <li><a href="cadastroProdutos.html">Produtos</a></li>
+                  <li><a href="relatorioVendas.html">Relatorio de vendas</a></li>
+                  <li><a href="relatorioEstoque.html">Relatorios de estoque</a></li>
+                  <li><a href="login.html">sair</a></li>
+                </ul>                   
+            </div>
+        </div>    
+        <div class="row borda">
+            <div class="col-md-12">
+        
+            </div>
+        </div>
+        <div class="row formTable">
+            <div class="row linhaTable">
+                <div class="col-md-12">
+                    <h3>Relatorio de Vendas</h3>
+                </div>
+            </div>
+            <div class="row table-responsive">
+                <div class="col-md-12 funcTable">
+                    <table class="table">
+                          <thead>
+                            <tr>
+                              <th scope="col">Nome</th>
+                              <th scope="col">Quantidade</th>
+                              <th scope="col">tipo</th>
+                              <th scope="col">Valor</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th scope="row">Batata Frita</th>
+                              <th>5</th>
+                              <th>Porção</th>
+                              <th>R$5,00</th>                            
+                            </tr>
+                            <tr>
+                              <th scope="row">Refrigerante</th>
+                              <th>10</th>
+                              <th>Litros</th>
+                              <th>R$8,00</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>            
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="acao.js"></script>
+<script type="text/javascript">
+  $("select option[value=valor2]").click(function(){
+    window.location.href("relatorioVendas.html");
+  });
+</script>
+</html>

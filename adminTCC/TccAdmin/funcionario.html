@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/estilo1.css">
+    <title>Funcionario</title>
+</head>
+<body>
+     <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Imagem</h2>
+                <img src="img/logo.png" alt="">
+            </div>
+            <div class="col-md-6">
+                <ul id="menu">           
+                    <li><a href="home.html">Pagina Incial</a></li>
+                    <li><a href="mesas.html">Gerenciar Mesas</a></li>
+                    <li><a href="funcionarios.html">Funcionários</a></li>
+                    <li><a href="estoque.html">Estoque</a></li>
+                    <li><a href="relatorios.html">Relátorios</a></li>
+                </ul>    
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Funcionário</h3>
+            </div>
+            <div class="col-md-6">
+                 <button class="btn btn-default btn-info" data-toggle="modal" data-target="#funcionario" id="funcionarioNovo">Adicionar Funcinário</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <table id="tabela">
+                    <tr id="coluna">
+                        <th id="linha">Nome</th>
+                        <th id="linha">Telefone</th>
+                        <th id="linha">Email</th>
+                        <th colspan="2" id="linha">Ação</th>
+                    </tr>
+                    <div class="col-md-6">
+                    <tr id="coluna">
+                        <th id="linha">Albino</th> 
+                        <th>3448-3618</th>  
+                        <th>luiz.amaro342@gmail.com</th> 
+                        <td><button class="btn btn-block btn-warning">Alterar</button></td>
+                        <td><button class="btn btn-block btn-info">Excluir</button></td>  
+                    </tr>
+                </table>
+                    </div>
+                </div>
+
+                <!--Modal do Botão Adicionar-->
+                <div id="funcionario" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                    <!--Container da modal--> 
+                    <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Funcionário Novo</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="">Nome do funcionário</label>
+                                    <input type="text" class="form-control" id="usuario" placeholder="Digite o nome do funcionário novo">
+                                </div>
+                            </div>
+                        </div> 
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="">Telefone do funcionário</label>
+                                    <input type="number" class="form-control" id="telefone" placeholder="Digite o telefone do funcionário">
+                                </div>    
+                            </div>
+                        </div> 
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                <label for="">Email do funcionario</label>
+                                <input type="text" class="form-control" id="email" placeholder="Digite o email do funcionário novo">
+                            </div>  
+                        </div>
+                    </div> 
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn-success" data-dismiss="modal">Salvar Alterações</button>
+                        <button type="button" class="btn btn-default btn-danger" data-dismiss="modal">Cancelar Alterações</button>
+                    </div>
+                </div>
+            </div>
+        </div>     
+    </div>
+</div> 
+
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+</body>
+</html>

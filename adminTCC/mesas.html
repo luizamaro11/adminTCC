@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/estilo.css">
+    <title>Gerenciadode de mesas</title>
+</head>
+<body>
+    <div class="container-fluid">           
+        <div class="row linhaHeader">
+            <div class="col-md-12 cabecalho">
+                <img src="imagens/logo1.png" class="logo">
+                <ul>
+                  <li><a href="mesas.html">Mesas</a></li>
+                    <li><a href="funcionario.html">Funcionário</a></li>
+                    <li><a href="cadastroProdutos.html">Produtos</a></li>
+                    <li><a href="relatorioVendas.html">Relatorio de vendas</a></li>
+                    <li><a href="relatorioEstoque.html">Relatorios de estoque</a></li>
+                    <li><a href="login.html">sair</a></li>
+                </ul>                   
+            </div>
+        </div>    
+        <div class="row borda">
+            <div class="col-md-12">
+        
+            </div>
+        </div>
+        <div class="row formTable">
+            <div class="row linhaTable">
+                <div class="col-md-12">
+                    <h3>Mesas</h3>
+                    <button class="btn btn-block btn-info" data-toggle="modal" data-target="#mesaNova" id="funcionarioNovo">Adicionar Mesa</button>
+                </div>
+            </div>
+            <div class="row table-responsive">
+                <div class="col-md-12 funcTable">
+                    <table class="table">
+                          <thead>
+                            <tr>
+                              <th scope="col">Numero da mesa</th>
+                              <th scope="col">ação</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th scope="row" style="color: lightgreen; font-size: 20px;">Mesa 1</th>
+                              <td>
+                                <button class="btn-block btn-warning">Alterar</button>
+                                <button class="btn-block btn-info">Excluir</button>
+                              </td>
+                            </tr>
+                             <tr>
+                              <th scope="row" style="color: #ff0066; font-size: 20px;">Mesa 2</th>
+                              <td>
+                                <button class="btn-block btn-warning">Alterar</button>
+                                <button class="btn-block btn-info">Excluir</button>
+                              </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>            
+        </div>
+    </div>
+     <!--Modal do Botão Adicionar-->
+     <div id="mesaNova" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          
+      <!--Container da modal--> 
+        <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Adicionando Mesa</h4>
+            </div>
+            <div class="modal-body">
+              <label for="">Número da mesa</label>
+              <input type="text" class="form-control" id="numeroMesa">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default btn-success" data-dismiss="modal">Salvar Alterações</button>
+                <button type="button" class="btn btn-default btn-danger" data-dismiss="modal">Cancelar Alterações</button>
+            </div>
+          </div>
+      
+        </div>
+      </div>     
+ </div>
+
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+</body>
+</html>
