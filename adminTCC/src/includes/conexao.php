@@ -1,16 +1,5 @@
 <?php
 
-/*$host = "localhost";
-$user = "admin";
-$pass = "123*";
-$db = "";
-
-//conecta com o BD
-$conn = new mysqli($host, $user, $pass, $db);
-
-if (mysqli_connect_errno()) trigger_error(mysqli_connect_error());*/
-
-
 class Conexao{
     private $host;
     private $user;
@@ -23,5 +12,14 @@ class Conexao{
         $this->pass = $pass;
         $this->db = $db;
     }
+    
+    public function conectar(){
+        if(!($conn = mysqli_connect($this->host, $this->user, $this->pass, $this->db))){
+            echo "<script>alert('erro ao conectar com o banco')</script>";
+            header ("location: index.html");
+            exit();
+        } else {
+            echo "<script>alert('conectado com sucesso')</script>";
+        }
+    }
 }
-
