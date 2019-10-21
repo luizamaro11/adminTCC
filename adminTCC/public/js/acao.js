@@ -1,5 +1,4 @@
-
-$(document).ready(function(){
+/*$(document).ready(function(){
 	$(document).on("click", "#entrar", function(){
 		var usuario = $("#usuario").val();
 		var senha = $("#senha").val();
@@ -23,5 +22,5 @@ $(document).ready(function(){
 		} 
 		
 	});
-});
+});*/
 

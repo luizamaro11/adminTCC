@@ -1,25 +1,33 @@
 <?php
 
 class Conexao{
-    private $host;
-    private $user;
-    private $pass;
-    private $db;
+    private $host = "localhost";
+    private $user = "admin";
+    private $pass = "123*";
+    private $db   = "quiosque";
     
-    public function __construct($host, $user, $pass, $db){
-        $this->host = $host;
-        $this->user = $user;
-        $this->pass = $pass;
-        $this->db = $db;
-    }
+    /*public function __construct($host, $user, $pass, $db){
+        $this->host = "localhost";
+        $this->user = "admin";
+        $this->pass = "123*";
+        $this->db = "quiosque";
+    }*/
     
     public function conectar(){
-        if(!($conn = mysqli_connect($this->host, $this->user, $this->pass, $this->db))){
-            echo "<script>alert('erro ao conectar com o banco')</script>";
-            header ("location: index.html");
-            exit();
-        } else {
-            echo "<script>alert('conectado com sucesso')</script>";
+        
+        try{
+        
+            if(!($conn = mysqli_connect($this->host, $this->user, $this->pass, $this->db))){
+                throw new Exception("Falha ao conectar com o banco de dados");
+            } 
+            
+        } catch(Exception $e){
+            
+            echo $e->getMessage();
+            exit;
+                
         }
+        
+        return $conn;
     }
 }
