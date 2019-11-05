@@ -2,8 +2,8 @@
 
 class Conexao{
     private $host = "localhost";
-    private $user = "admin";
-    private $pass = "123*";
+    private $user = "root";
+    private $pass = "usbw";
     private $db   = "quiosque";
     
     /*public function __construct($host, $user, $pass, $db){
