@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Relatorio de Estoque</title>
+	<title>Produtos</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/estilo.css">
@@ -74,24 +74,24 @@
 					<div class="row">
 						<div class="col-md-6">
 							<label for="" style="color: #000">Nome do produto</label>
-							<input id="nomeProduto" type="text" class="form-control" name="nmProduto" placeholder="digite o nome da mesa">
+							<input id="nomeProduto" type="text" class="form-control" name="nomeProduto" placeholder="digite o nome da mesa">
 						</div>
 
 						<div class="col-md-6">
 							<label style="color: #000">Quantidade</label>
-							<input id="quantidadeProduto" type="number" class="form-control">
+							<input id="quantidadeProduto" type="number" class="form-control" name="quantidadeProduto">
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="col-md-6">
 							<label style="color: #000">Preço do Produto</label>
-							<input id="valorProduto" type="number" class="form-control">	
+							<input id="valorProduto" type="number" class="form-control" name="valorProduto">	
 						</div>
 
 						<div class="col-md-6">							
 							<label style="color: #000">Tipo de Produto</label>
-							<select id="tipoUnidadeProduto" class="form-control">
+							<select id="tipoUnidadeProduto" class="form-control" name="tipoUnidadeProduto">
 								<option>unidades</option>
 								<option>porção</option>
 								<option>litros</option>
@@ -125,10 +125,10 @@
             url:'php_action/createProduto.php',
             type:'POST',
             data: {
-                nomeProduto: nomeProduto.value,
-                quantidadeProduto: quantidadeProduto.value,
-                valorProduto: valorProduto.value,
-                tipoUnidadeProduto: tipoUnidadeProduto.selectedOptions[0].value,
+                objNomeProduto: nomeProduto.value,
+                objQuantidadeProduto: quantidadeProduto.value,
+                objValorProduto: valorProduto.value,
+                objTipoUnidadeProduto: tipoUnidadeProduto.selectedOptions[0].value
             },
 
             success: (data) => {
@@ -136,10 +136,11 @@
                 if(data == 1){
                    
                     alert('Produto Cadastrado com Sucesso');
+                    retornaProdutos();
                    
                 } else {
                     
-                    alert('Falha ao Cadastrar o Número da Mesa');
+                    alert('Falha ao Cadastrar o produto');
                     
                 }
                 
@@ -170,7 +171,7 @@
                     linhaProduto += `
                         <tr>
 						    <th scope="row">${produtos[contadorProduto].nm_produto}</th>
-							<th>${(produtos[contadorProduto].qt_produto == null) ? 0 : produtos[contadorProduto].qt_produto}</th>
+							<th>${(produtos[contadorProduto].qtd_produto == null) ? 0 : produtos[contadorProduto].qtd_produto}</th>
 							<th>${produtos[contadorProduto].tp_produto}</th>
 							<th>${produtos[contadorProduto].vl_produto}</th>
 							<td>

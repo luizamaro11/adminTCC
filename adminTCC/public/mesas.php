@@ -97,22 +97,22 @@
         btnSalvar.addEventListener('click', function() {
             
             $.ajax({
-               url:'php_action/createMesa.php',
-               type:'POST',
-               data: {objNumeroMesa: numeroMesa.value},
-               success: (data) => {
+                url:'php_action/createMesa.php',
+                type:'POST',
+                data: {objNumeroMesa: numeroMesa.value},
+                success: (data) => {
                 
-                if(data == 1){
+                    if(data == 1){
                    
-                    retornaMesas();
+                        retornaMesas();
                    
-                }else{
+                    } else {
                     
-                    alert('Falha ao Cadastrar o Número da Mesa');
+                        alert('Falha ao Cadastrar o Número da Mesa');
                     
+                    }
+                
                 }
-                
-               }
             });
             
         });

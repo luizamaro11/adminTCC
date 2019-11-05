@@ -11,8 +11,8 @@
    
 	while ($linha = mysqli_fetch_assoc($query)) {
 
-        $mesas[] = $linha;
+        $produtos[] = $linha;
     
 	}
 
-    echo json_encode($mesas, JSON_UNESCAPED_UNICODE); 
+    echo json_encode($produtos, JSON_UNESCAPED_UNICODE); 
