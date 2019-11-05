@@ -1,6 +1,6 @@
 <?php
 
-require_once('../src/classes/Usuario.php');
+require_once("../src/classes/Usuario.php");
 
 $objConnection = new Conexao();
 $objLogin = new Usuario();
@@ -45,29 +45,39 @@ $objLogin = new Usuario();
                 <div class="row">
                     <div class="col-md-4">
                         <p> 
-                            <input type="checkbox" name="manterlogado" id="manterlogado" value="" /> 
+                            <input type="checkbox" name="manterlogado" id="manterlogado" value=""/> 
                             <label for="manterlogado">Manter-me logado</label>
                         </p>
                     </div>
                     <div class="col-md-8">
                         <p class="link">
                         Ainda não tem conta?
-                            <a href="cadastro.html">Cadastre-se</a>
+                            <a href="cadastroUsuario.php">Cadastre-se</a>
                         </p>
                     </div>
                 </div>
                 
-                <input type="submit" class="form-control" id="entrar" name="Entrar" value="Entrar"></button>
+                <input type="submit" class="form-control" id="entrar" name="Entrar" value="ENTRAR"></button>
             </form>
             
             <?php
             
-            if(isset($_POST["Entrar"]) && $_POST["Entrar"] == "Entrar")
+            if(isset($_POST["Entrar"]) && $_POST["Entrar"] == "ENTRAR")
             { 
                 $logar = $objLogin->login($_POST["usuario"], $_POST['senha']);
             }
             
             ?>
+            
+            <?php
+                
+            if (isset($logar)){
+                echo $logar;
+            } 
+            
+            ?>
+            
+            
         </div>
     </div>
    

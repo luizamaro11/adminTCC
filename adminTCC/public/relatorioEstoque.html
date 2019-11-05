@@ -15,12 +15,12 @@
 			<div class="col-md-12 cabecalho">
 				<img src="imagens/logo1.png" class="logo">
 				<ul>
-					<li><a href="mesas.html">Mesas</a></li>
+					<li><a href="mesas.php">Mesas</a></li>
                     <li><a href="funcionario.html">Funcionário</a></li>
-                    <li><a href="cadastroProdutos.html">Produtos</a></li>
+                    <li><a href="cadastroProdutos.php">Produtos</a></li>
                     <li><a href="relatorioVendas.html">Relatorio de vendas</a></li>
                     <li><a href="relatorioEstoque.html">Relatorios de estoque</a></li>
-                    <li><a href="login.html">sair</a></li>
+                    <li><a href="index.php">Sair</a></li>
 				</ul>                   
 			</div>
 		</div>    
@@ -34,7 +34,7 @@
 			<div class="row linhaTable">
 				<div class="col-md-12">
 					<h3>Produtos</h3>
-					<button class="btn btn-block btn-info" data-toggle="modal" data-target="#funcionario" id="funcionarioNovo">Adicionar Produto</button>
+					<a href="cadastroProdutos.php"><button class="btn btn-block btn-info" id="funcionarioNovo">Adicionar Produto</button></a>
 				</div>
 			</div>
 			
@@ -50,27 +50,8 @@
 								<th scope="col">Ação</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<th scope="row">Batata Frita</th>
-								<th>5</th>
-								<th>Porção</th>
-								<th>R$5,00</th>
-								<td>
-									<button class="btn-block btn-warning">Alterar</button>
-									<button class="btn-block btn-info">Excluir</button>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row">Refrigerante</th>
-								<th>10</th>
-								<th>Litros</th>
-								<th>R$8,00</th>
-								<td>
-									<button class="btn-block btn-warning">Alterar</button>
-									<button class="btn-block btn-info">Excluir</button>
-								</td>
-							</tr>
+						<tbody id="listaProdutos">
+							
 						</tbody>
 					</table>
 				</div>
@@ -78,4 +59,96 @@
 		</div>
 	</div>
 </body>
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+       
+        $(document).ready(function (){
+           
+           retornaProdutos();
+            
+        });
+        
+        function retornaProdutos(){
+            
+            $.ajax({
+                url:'php_action/listarProdutos.php',
+                type:'POST',
+                success: (data) => {
+                        
+                    let produtos = JSON.parse(data);
+                    let linhaProduto;
+                    let contadorProduto = 0;
+                            
+                    while (contadorProduto < produtos.length){
+                                
+                    linhaProduto += `
+                       <tr>
+							<th scope="row">${produtos[contadorProduto].nm_produto}</th>
+							<th>${(produtos[contadorProduto].qt_produto == null) ? 0 : produtos[contadorProduto].qt_produto}</th>
+							<th>${produtos[contadorProduto].tp_produto}</th>
+							<th>${produtos[contadorProduto].vl_produto}</th>
+							<td>
+								<button class="btn-block btn-warning" onclick="alterarProdutos">Alterar</button>
+							</td>
+						</tr>`;
+                                
+                    contadorProduto++;
+                                
+                    }
+                            
+                    document.querySelector("#listaProdutos").innerHTML = linhaProduto;
+                          
+                } 
+            
+            });
+            
+        }
+        
+        function alterarProdutos(codigoProduto){
+    
+            
+            $.ajax({
+               url:'php_action/alterarProdutos.php',
+               type:'POST',
+               data: {codigoProduto: codigoProduto},
+               success: (data) => {
+                
+                if(data == 1){
+                    
+                    alert("produto alterado com sucesso");
+                    retornaProdutos();
+                    
+                } else {
+                    
+                    alert("Falha ao alterar as informações do produto");
+                    
+                }
+                
+               }
+            });
+            
+            
+            $.ajax({
+               url:'php_action/alterarProdutos.php',
+               type:'POST',
+               data: {codigoProduto: codigoProduto},
+               success: (data) => {
+                
+                if(data == 1){
+                    
+                    alert("produto alterado com sucesso");
+                    retornaProdutos();
+                    
+                } else {
+                    
+                    alert("Falha ao alterar as informações do produto");
+                    
+                }
+                
+               }
+            });
+            
+        }
+	
+</script>
 </html>

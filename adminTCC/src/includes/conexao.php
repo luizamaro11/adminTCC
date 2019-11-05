@@ -16,10 +16,10 @@ class Conexao{
     public function conectar(){
         
         try{
-        
+            
             if(!($conn = mysqli_connect($this->host, $this->user, $this->pass, $this->db))){
                 throw new Exception("Falha ao conectar com o banco de dados");
-            } 
+            }
             
         } catch(Exception $e){
             
@@ -31,3 +31,4 @@ class Conexao{
         return $conn;
     }
 }
+?>

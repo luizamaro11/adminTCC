@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-require_once(dirname(__FILE__).'../../includes/conexao.php');
+require_once(dirname(__FILE__). "../../includes/conexao.php");
 
 class Usuario{
     private $cdUsuario;
@@ -22,10 +22,9 @@ class Usuario{
         
         $link = $this->conn->conectar();
         
-        
         try{
 
-            $sql = "select * from usuario where usuario.nm_nome ='".$usuario."'";
+            $sql = "SELECT * FROM usuario WHERE nm_nome ='".$usuario."'";
             
             $queryUsuario = mysqli_query($link, $sql);
             
@@ -40,10 +39,10 @@ class Usuario{
                 $dadosUsuario = mysqli_fetch_array($queryUsuario);
                 
                 if($dadosUsuario["ds_senha"] == $senha){
-                    
+                
                     $_SESSION["id_usuario"] = $dadosUsuario["ds_senha"];
                     $_SESSION["logado"] = "sim";
-                    header("Location: ../public/mesas.html");
+                    header("Location: ../public/mesas.php");
                     
                 } else{
                     
@@ -65,22 +64,65 @@ class Usuario{
             
         }
             
-            
     }
     
     public function getNmUsuario(){
       return $_SESSION["id_usuario"];
     }
     
-    private function verificarLogin(){
-        if(!$_SESSION['login']){
-		    header('location: ../public/index.php');
-		    exit();
-	    }
+    public function verificarLogin(){
+        if(!isset($_SESSION["logado"])){
+            header("Location: ../public/index.php");
+            exit();
+        }
     }
     
-    public function cadastroUsuario(){
+    public function cadastroUsuario($login, $email, $tipoUsuario, $telefone, $senha){
+        $link = $this->conn->conectar();
         
+        try{
+            
+            $sql = "INSERT INTO `usuario` (`cd_usuario`, `nm_nome`, `nv_usuario`, `n_celular`, `ds_email`, `ds_senha`) VALUES (NULL, '$login', '$tipoUsuario', '$telefone', '$email', '$senha');";
+            
+            $queryCadastroUsuario = mysqli_query($link, $sql);
+            
+            if($queryCadastroUsuario === false){
+                
+                throw new Exception("Ocorreu um erro na query SQL. Detalhes: " . $link->error);
+                
+            }
+            
+            /*if(mysqli_query($link, $sql)){
+                header("Location: ../../public/cadastroUsuario.php?sucesso");
+                exit;
+            } else {
+                header("Location: ../../public/cadastroUsuario.php?erro");
+                exit;
+            }*/
+            
+            if(mysqli_affected_rows($link) > 0) {
+                return true;
+            } else {
+                return false;
+            }
+            
+        } catch(Exception $e){
+            echo $e->getMessage();
+        }
+    }
+    
+    public function unico($login) {
+        
+        $link = $this->conn->conectar();
+        
+        $unic = "SELECT * FROM usuario WHERE nm_nome = '$login'";
+        $exec = mysqli_query($link, $unic);
+        
+        if(mysqli_num_rows($exec) > 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
     
     private function alterarSenha(){
@@ -89,7 +131,7 @@ class Usuario{
     
     public function encerrarLogin(){
         session_destroy();
-        header("Location: ../public/index.php ");
+        header("Location: ../public/index.php");
         exit();
     }
     
