@@ -34,7 +34,7 @@
 			<div class="row linhaTable">
 				<div class="col-md-12">
 					<h3>Produtos</h3>
-					<a href="cadastroProdutos.php"><button class="btn btn-block btn-info" id="funcionarioNovo">Adicionar Produto</button></a>
+					<button type="button" class="btn btn-block btn-info" data-toggle="modal" data-target="#adicionarProduto">ADICIONAR PRODUTO</button>
 				</div>
 			</div>
 			
@@ -58,9 +58,94 @@
 			</div>            
 		</div>
 	</div>
+
+	
+
+	<!--Modal do Botão Adicionar-->
+    <div id="adicionarProduto" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          
+            <!--Container da modal--> 
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Adicionar Produto</h4>
+                </div>
+                <div class="modal-body">
+					<div class="row">
+						<div class="col-md-6">
+							<label for="" style="color: #000">Nome do produto</label>
+							<input id="" type="text" class="form-control" name="nmProduto" placeholder="digite o nome da mesa">
+						</div>
+
+						<div class="col-md-6">
+							<label style="color: #000">Quantidade</label>
+							<input id="quantidadeProduto" type="number" class="form-control">
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-6">
+							<label style="color: #000">Preço do Produto</label>
+							<input id="valorProduto" type="number" class="form-control">	
+						</div>
+
+						<div class="col-md-6">							
+								<label style="color: #000">Tipo de Produto</label>
+								<select id="tipoUnidadeProduto" class="form-control">
+									<option>unidades</option>
+									<option>porção</option>
+									<option>litros</option>
+									<option>kg</option>
+								</select>	
+						</div>
+					</div>
+                </div>
+                
+                <div class="modal-footer">
+                    <button id="salvar" type="button" class="btn btn-default btn-success" data-dismiss="modal">SALVAR</button>
+                    <button type="button" class="btn btn-default btn-danger" data-dismiss="modal">CANCELAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
+
+let nomeProduto = document.querySelector("#nomeProduto");
+        let quantidadeProduto = document.querySelector("#quantidadeProduto");
+        let valorProduto = document.querySelector("#valorProduto");
+        let tipoUnidadeProduto = document.querySelector("#tipoUnidadeProduto");
+        let btnSalvar = document.querySelector("#salvarProduto");
+        
+        btnSalvar.addEventListener('click', event => {
+           
+            $.ajax({
+               url:'php_action/createProduto.php',
+               type:'POST',
+               data: {
+                   nomeProduto: nomeProduto.value,
+                   quantidadeProduto: quantidadeProduto.value,
+                   valorProduto: valorProduto.value,
+                   tipoUnidadeProduto: tipoUnidadeProduto.selectedOptions[0].value,
+               },
+               success: (data) => {
+                
+                if(data == 1){
+                   
+                    alert('Produto Cadastrado com Sucesso');
+                   
+                }else{
+                    
+                    alert('Falha ao Cadastrar o Número da Mesa');
+                    
+                }
+                
+               }
+            });
+            
+        });
        
         $(document).ready(function (){
            
