@@ -74,19 +74,19 @@
 					<div class="row">
 						<div class="col-md-6">
 							<label for="" style="color: #000">Nome do produto</label>
-							<input id="nomeProduto" type="text" class="form-control" name="nomeProduto" placeholder="digite o nome da mesa">
+							<input id="nomeProduto" type="text" class="form-control" name="nomeProduto" placeholder="digite o nome do produto">
 						</div>
 
 						<div class="col-md-6">
 							<label style="color: #000">Quantidade</label>
-							<input id="quantidadeProduto" type="number" class="form-control" name="quantidadeProduto">
+							<input id="quantidadeProduto" type="number" class="form-control" name="quantidadeProduto" placeholder="digite a quantidade de produto">
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="col-md-6">
 							<label style="color: #000">Preço do Produto</label>
-							<input id="valorProduto" type="number" class="form-control" name="valorProduto">	
+							<input id="valorProduto" type="number" class="form-control" name="valorProduto" placeholder="digite o valor do produto">	
 						</div>
 
 						<div class="col-md-6">							
@@ -103,6 +103,55 @@
                 
                 <div class="modal-footer">
                     <button id="salvarProduto" type="button" class="btn btn-default btn-success" data-dismiss="modal">SALVAR</button>
+                    <button type="button" class="btn btn-default btn-danger" data-dismiss="modal">CANCELAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Modal do Botão alterar para listar as informações do produto selecionado-->
+    <div id="alterarProduto" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          
+            <!--Container da modal--> 
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Alterar Produto</h4>
+                </div>
+
+                <div class="modal-body">
+					<div class="row">
+						<div class="col-md-6">
+							<label for="" style="color: #000">Nome do produto</label>
+							<input id="nomeProduto" type="text" class="form-control" name="nomeProduto">
+						</div>
+
+						<div class="col-md-6">
+							<label style="color: #000">Quantidade</label>
+							<input id="quantidadeProduto" type="number" class="form-control" name="quantidadeProduto">
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-6">
+							<label style="color: #000">Preço do Produto</label>
+							<input id="valorProduto" type="number" class="form-control" name="valorProduto">	
+						</div>
+
+						<div class="col-md-6">							
+							<label style="color: #000">Tipo de Unidade</label>
+							<select id="tipoUnidadeProduto" class="form-control" name="tipoUnidadeProduto">
+								<option>unidades</option>
+								<option>porção</option>
+								<option>litros</option>
+								<option>kg</option>
+							</select>	
+						</div>
+					</div>
+                </div>
+                
+                <div class="modal-footer">
+                    <button id="alteraProduto" type="button" class="btn btn-default btn-success" data-dismiss="modal">SALVAR ALTERAÇÃO</button>
                     <button type="button" class="btn btn-default btn-danger" data-dismiss="modal">CANCELAR</button>
                 </div>
             </div>
@@ -175,7 +224,7 @@
 							<th>${produtos[contadorProduto].tp_produto}</th>
 							<th>${produtos[contadorProduto].vl_produto}</th>
 							<td>
-								<button class="btn-block btn-warning" onclick="alterarProdutos">Alterar</button>
+								<button class="btn-block btn-warning" id="listarUmProduto" data-toggle="modal" data-target="#alterarProduto">ALTERAR</button>
 							</td>
 						</tr>`;
                                 
@@ -189,29 +238,32 @@
             
         });       
     }
-        
-    function alterarProdutos(codigoProduto){
-                
+
+    $(document).on("click", "#listarUmProduto", function(){
         $.ajax({
-            url:'php_action/alterarProdutos.php',
+            url:'php_action/listarUmProduto.php',
             type:'POST',
-            data: {codigoProduto: codigoProduto},
             success: (data) => {
-                
-                if(data == 1){
-                    
-                    alert("produto alterado com sucesso");
-                    retornaProdutos();
-                    
-                } else {
-                    
-                    alert("Falha ao alterar as informações do produto");
-                    
-                }
-                
-            }
+
+                let produtos = JSON.parse(data);
+                let linhaProduto;
+                                
+                linhaProduto = `
+                    $("#nomeProduto").val(${produtos[contadorProduto].nm_produto});
+                    $("#quantidadeProduto").val(${produtos[contadorProduto].qtd_produto});
+                    $("#valorProduto").val(${produtos[contadorProduto].tp_produto});
+                    $("#tipoUnidadeProduto").val(${produtos[contadorProduto].vl_produto});
+                `;               
+            }        
         });
- 
+    });
+    
+    $(document).on("click", "#alteraProduto", function(){
+
+    });
+
+    function alterarProdutos(codigoProduto){
+        
         $.ajax({
             url:'php_action/alterarProdutos.php',
             type:'POST',

@@ -7,7 +7,7 @@
     
     $sql = "SELECT * FROM produtos";
     
-    $query = mysqli_query($conexao, $sql) or die ("Falha ao listar os mesa, por favor entrar em contato com o suporte. ERRO: " . mysqli_error($conexao));;
+    $query = mysqli_query($conexao, $sql) or die ("Falha ao listar os produtos, por favor entrar em contato com o suporte. ERRO: " . mysqli_error($conexao));;
    
 	while ($linha = mysqli_fetch_assoc($query)) {
 
