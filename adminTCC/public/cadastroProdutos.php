@@ -123,24 +123,24 @@
 					<div class="row">
 						<div class="col-md-6">
 							<label for="" style="color: #000">Nome do produto</label>
-							<input id="nomeProduto" type="text" class="form-control" name="nomeProduto">
+							<input id="altNomeProduto" type="text" class="form-control" name="nomeProduto">
 						</div>
 
 						<div class="col-md-6">
 							<label style="color: #000">Quantidade</label>
-							<input id="quantidadeProduto" type="number" class="form-control" name="quantidadeProduto">
+							<input id="altQuantidadeProduto" type="number" class="form-control" name="quantidadeProduto">
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="col-md-6">
 							<label style="color: #000">Preço do Produto</label>
-							<input id="valorProduto" type="number" class="form-control" name="valorProduto">	
+							<input id="altValorProduto" type="number" class="form-control" name="valorProduto">	
 						</div>
 
 						<div class="col-md-6">							
 							<label style="color: #000">Tipo de Unidade</label>
-							<select id="tipoUnidadeProduto" class="form-control" name="tipoUnidadeProduto">
+							<select id="altTipoUnidadeProduto" class="form-control" name="tipoUnidadeProduto">
 								<option>unidades</option>
 								<option>porção</option>
 								<option>litros</option>
@@ -151,7 +151,7 @@
                 </div>
                 
                 <div class="modal-footer">
-                    <button id="alteraProduto" type="button" class="btn btn-default btn-success" data-dismiss="modal">SALVAR ALTERAÇÃO</button>
+                    <button id="alteraProduto" type="button" class="btn btn-default btn-success" data-dismiss="modal" onclick="alterarProdutos($(this).attr('data-id'));)" data-id="codigoProduto">SALVAR ALTERAÇÃO</button>
                     <button type="button" class="btn btn-default btn-danger" data-dismiss="modal">CANCELAR</button>
                 </div>
             </div>
@@ -243,23 +243,16 @@
         $.ajax({
             url:'php_action/listarUmProduto.php',
             type:'POST',
-            success: (data) => {
-
-                let produtos = JSON.parse(data);
-                let linhaProduto;
-                                
-                linhaProduto = `
-                    $("#nomeProduto").val(${produtos[contadorProduto].nm_produto});
-                    $("#quantidadeProduto").val(${produtos[contadorProduto].qtd_produto});
-                    $("#valorProduto").val(${produtos[contadorProduto].tp_produto});
-                    $("#tipoUnidadeProduto").val(${produtos[contadorProduto].vl_produto});
-                `;               
+            data: {codigoProduto: $("#listarUmProduto").val()},
+            dataType: 'json',
+            success: function(data){
+                $("#altNomeProduto").val(data.produtos.nomeProduto);
+                $("#altQuantidadeProduto").val(data.produtos.quantidadeProduto);
+                $("#altValorProduto").val(data.produtos.valorProduto);
+                $("#altTipoUnidadeProduto").val(data.produtos.tipoUnidadeProduto);
+                               
             }        
         });
-    });
-    
-    $(document).on("click", "#alteraProduto", function(){
-
     });
 
     function alterarProdutos(codigoProduto){

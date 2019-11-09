@@ -5,7 +5,7 @@
 
     $conexao = $conn->conectar();
     
-    $codigo = $_POST['codigoProduto'];
+    $codigoProduto = $_POST['codigoProduto'];
     $nomeProduto = $_POST['nomeProduto'];
     $quantidadeProduto = $_POST['quantidadeProduto'];
     $valorProduto = $_POST['valorProduto'];
