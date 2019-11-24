@@ -1,9 +1,7 @@
 <?php
-    
     require_once("../src/classes/Usuario.php");
-    $objValidacao = new Usuario();
-    $objValidacao->verificarLogin();
-
+    /*$objValidacao = new Usuario();
+    $objValidacao->verificarLogin();*/
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -18,52 +16,49 @@
 </head>
 <body>
     <div class="container-fluid">           
-        <div class="row linhaHeader">
-            <div class="col-md-12 cabecalho">
-                <img src="imagens/logo1.png" class="logo">
-                <ul>
-                    <li><a href="mesas.php">Mesas</a></li>
-                    <li><a href="funcionario.html">Funcionário</a></li>
-                    <li><a href="cadastroProdutos.php">Produtos</a></li>
-                    <li><a href="relatorioVendas.html">Relatorio de vendas</a></li>
-                    <li><a href="relatorioEstoque.html">Relatorios de estoque</a></li>
-                    <li><a href="index.php">sair</a></li>
-                </ul>                   
-            </div>
-        </div>
-        
-        <div class="row borda">
-            <div class="col-md-12">
-        
-            </div>
-        </div>
-        
-        <div class="row formTable">
-            <div class="row linhaTable">
-                <div class="col-md-12">
-                    <h3>Mesas</h3>
-                    <button class="btn btn-block btn-info" data-toggle="modal" data-target="#mesaNova" id="funcionarioNovo">ADICIONAR MESA</button>
+        <div class="col-md-2 menu">
+            <div class="row linhaHeader">
+                <div class="col-md-12 cabecalho">
+                    <ul>
+                        <li><a href="mesas.php">Mesas</a></li>
+                        <li><a href="funcionario.html">Funcionário</a></li>
+                        <li><a href="cadastroProdutos.php">Produtos</a></li>
+                        <li><a href="relatorioVendas.html">Relatorio de vendas</a></li>
+                        <li><a href="relatorioEstoque.html">Relatorios de estoque</a></li>
+                        <li><a href="index.php">Sair</a></li>
+                    </ul>                  
                 </div>
             </div>
-            
-            <div class="row table-responsive">
-                <div class="col-md-12 funcTable">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                              <th scope="col">Numero da mesa</th>
-                              <th scope="col">Ação</th>
-                            </tr>
-                        </thead>
-                        <tbody id="listarMesas">
-                            
-                        </tbody>
-                    </table>
+        </div>
+        <div class="col-md-10 tabelaDireita">
+            <div class="row formTable">
+                <div class="row linhaTable">
+                    <div class="col-md-9">
+                        <h3>Mesas</h3>
+                    </div>
+                    <div class="col-md-3">
+                            <button class="btn btn-block btn-info" data-toggle="modal" data-target="#mesaNova" id="funcionarioNovo">ADICIONAR MESA</button>
+                    </div>
                 </div>
-            </div>            
+                
+                <div class="row table-responsive">
+                    <div class="col-md-12 funcTable">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                <th scope="col">Numero da mesa</th>
+                                <th scope="col">Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody id="listarMesas">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>            
+            </div>
         </div>
     </div>
-    
     
     <!--Modal do Botão Adicionar-->
     <div id="mesaNova" class="modal fade" role="dialog">

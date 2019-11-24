@@ -11,70 +11,74 @@
 
 </head>
 <body>
-    <div class="container-fluid">           
-        <div class="row linhaHeader">
-            <div class="col-md-12 cabecalho">
-                <img src="imagens/logo1.png" class="logo">
-                <ul>
-                     <li><a href="mesas.php">Mesas</a></li>
-                     <li><a href="funcionario.html">Funcionário</a></li>
-                     <li><a href="cadastroProdutos.php">Produtos</a></li>
-                     <li><a href="relatorioVendas.html">Relatorio de vendas</a></li>
-                     <li><a href="relatorioEstoque.html">Relatorios de estoque</a></li>
-                     <li><a href="index.php">sair</a></li>
-                </ul>                   
+    <div class="container-fluid">   
+        <div class="col-md-2 menu">    
+            <div class="row linhaHeader">
+                <div class="col-md-12 cabecalho">
+                    <ul>
+                         <li><a href="mesas.php">Mesas</a></li>
+                         <li><a href="funcionario.html">Funcionário</a></li>
+                         <li><a href="cadastroProdutos.php">Produtos</a></li>
+                         <li><a href="relatorioVendas.html">Relatorio de vendas</a></li>
+                         <li><a href="relatorioEstoque.html">Relatorios de estoque</a></li>
+                         <li><a href="index.php">sair</a></li>
+                    </ul>                   
+                </div>
             </div>
         </div>
-        
-        <div class="row borda">
-            <div class="col-md-12">
-        
-            </div>
-        </div>
-        
-        <div class="row formTable">
-            <div class="row linhaTable">
+        <div class="col-md-10 tabelaDireita">
+            <div class="row borda">
                 <div class="col-md-12">
-                    <h3>Relatorio de Vendas</h3>
+            
                 </div>
             </div>
             
-            <div class="row table-responsive">
-                <div class="col-md-12 funcTable">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Nome</th>
-                                <th scope="col">Quantidade</th>
-                                <th scope="col">tipo</th>
-                                <th scope="col">Valor</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">Batata Frita</th>
-                                <th>5</th>
-                                <th>Porção</th>
-                                <th>R$5,00</th>                            
-                            </tr>
-                            <tr>
-                                <th scope="row">Refrigerante</th>
-                                <th>10</th>
-                                <th>Litros</th>
-                                <th>R$8,00</th>
-                            </tr>
-                        </tbody>
-                    </table>
+            <div class="row formTable">
+                <div class="row linhaTable">
+                    <div class="col-md-12">
+                        <h3>Relatorio de Vendas</h3>
+                    </div>
                 </div>
-            </div>            
-        </div>
+                
+                <div class="row table-responsive">
+                    <div class="col-md-12 funcTable">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nome</th>
+                                    <th scope="col">Quantidade</th>
+                                    <th scope="col">tipo</th>
+                                    <th scope="col">Valor</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Batata Frita</th>
+                                    <th>5</th>
+                                    <th>Porção</th>
+                                    <th>R$5,00</th>                            
+                                </tr>
+                                <tr>
+                                    <th scope="row">Refrigerante</th>
+                                    <th>10</th>
+                                    <th>Litros</th>
+                                    <th>R$8,00</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>            
+            </div>
+        </div>    
     </div>
 </body>
 <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="acao.js"></script>
 <script type="text/javascript">
+
   $("select option[value=valor2]").click(function(){
     window.location.href("relatorioVendas.html");
   });
+  
 </script>
 </html>

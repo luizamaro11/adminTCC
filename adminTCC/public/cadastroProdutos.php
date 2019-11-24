@@ -10,55 +10,53 @@
 	<link rel="stylesheet" href="css/estilo.css">
 </head>
 <body>
-	<div class="container-fluid">           
-		<div class="row linhaHeader">
-			<div class="col-md-12 cabecalho">
-				<img src="imagens/logo1.png" class="logo">
-				<ul>
-					<li><a href="mesas.php">Mesas</a></li>
-                    <li><a href="funcionario.html">Funcionário</a></li>
-                    <li><a href="cadastroProdutos.php">Produtos</a></li>
-                    <li><a href="relatorioVendas.html">Relatorio de vendas</a></li>
-                    <li><a href="relatorioEstoque.html">Relatorios de estoque</a></li>
-                    <li><a href="index.php">Sair</a></li>
-				</ul>                   
-			</div>
-        </div>    
-        
-		<div class="row borda">
-			<div class="col-md-12">
-				
-			</div>
-		</div>
-		
-		<div class="row formTable">
-			<div class="row linhaTable">
-				<div class="col-md-12">
-					<h3>Produtos</h3>
-					<button type="button" class="btn btn-block btn-info" data-toggle="modal" data-target="#adicionarProduto">ADICIONAR PRODUTO</button>
-				</div>
-			</div>
-			
-			<div class="row table-responsive">
-				<div class="col-md-12 funcTable">
-					<table class="table">
-						<thead>
-							<tr>
-								<th scope="col">Nome</th>
-								<th scope="col">Quantidade</th>
-								<th scope="col">tipo</th>
-								<th scope="col">Valor</th>
-								<th scope="col">Ação</th>
-							</tr>
-						</thead>
-						<tbody id="listaProdutos">
-							
-						</tbody>
-					</table>
-				</div>
-			</div>            
-		</div>
-	</div>
+        <div class="container-fluid">           
+            <div class="col-md-2 menu">
+                <div class="row linhaHeader">
+                    <div class="col-md-12 cabecalho">
+                        <ul>
+                            <li><a href="mesas.php">Mesas</a></li>
+                            <li><a href="funcionario.html">Funcionário</a></li>
+                            <li><a href="cadastroProdutos.php">Produtos</a></li>
+                            <li><a href="relatorioVendas.html">Relatorio de vendas</a></li>
+                            <li><a href="relatorioEstoque.html">Relatorios de estoque</a></li>
+                            <li><a href="index.php">Sair</a></li>
+                        </ul>                  
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10 tabelaDireita">
+                <div class="row formTable">
+                    <div class="row linhaTable">
+                        <div class="col-md-9">
+                            <h3>Produtos</h3>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-block btn-info" data-toggle="modal" data-target="#adicionarProduto">ADICIONAR PRODUTO</button>
+                        </div>
+                    </div>
+                    
+                    <div class="row table-responsive">
+                        <div class="col-md-12 funcTable">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Nome</th>
+                                        <th scope="col">Quantidade</th>
+                                        <th scope="col">tipo</th>
+                                        <th scope="col">Valor</th>
+                                        <th scope="col">Ação</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="listaProdutos">
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>            
+                </div>
+            </div>
+	    </div>
 
 	<!--Modal do Botão Adicionar-->
     <div id="adicionarProduto" class="modal fade" role="dialog">
@@ -151,7 +149,7 @@
                 </div>
                 
                 <div class="modal-footer">
-                    <button id="alteraProduto" type="button" class="btn btn-default btn-success" data-dismiss="modal" onclick="alterarProdutos($(this).attr('data-id'));)" data-id="codigoProduto">SALVAR ALTERAÇÃO</button>
+                    <button id="alteraProduto" type="button" class="btn btn-default btn-success" data-dismiss="modal" onclick="alterarProdutos()" data-id="codigoProduto">SALVAR ALTERAÇÃO</button>
                     <button type="button" class="btn btn-default btn-danger" data-dismiss="modal">CANCELAR</button>
                 </div>
             </div>
@@ -197,6 +195,8 @@
         });
             
     });
+    
+    
        
     $(document).ready(function (){
            
@@ -218,11 +218,11 @@
                 while (contadorProduto < produtos.length){
                                 
                     linhaProduto += `
-                        <tr>
+                        <tr id="th${produtos[contadorProduto].cd_produto}">
 						    <th scope="row">${produtos[contadorProduto].nm_produto}</th>
 							<th>${(produtos[contadorProduto].qtd_produto == null) ? 0 : produtos[contadorProduto].qtd_produto}</th>
 							<th>${produtos[contadorProduto].tp_produto}</th>
-							<th>${produtos[contadorProduto].vl_produto}</th>
+							<th>R$ ${produtos[contadorProduto].vl_produto}</th>
 							<td>
 								<button class="btn-block btn-warning" id="listarUmProduto" data-toggle="modal" data-target="#alterarProduto">ALTERAR</button>
 							</td>
@@ -278,6 +278,33 @@
         });
             
     }
-	
+
+
+    /*document.querySelector("#listarUmProduto").addEventListener('click', event => {
+        
+        let tr = document.querySelector('#th1');
+        let altNomeProduto = document.querySelector('#altNomeProduto').value;
+        let altQuantidadeProduto = document.querySelector("#altQuantidadeProduto").value;
+        let altValorProduto = document.querySelector("#altValorProduto").value;
+        let altTipoUnidadeProduto = document.querySelector("#altTipoUnidadeProduto").children;
+        
+        valoresFilhosTr = tr.children;
+        
+        altNomeProduto = valoresFilhosTr[0].innerText;
+        altQuantidadeProduto = valoresFilhosTr[1].innerText;
+        altValorProduto = valoresFilhosTr[3].innerText;
+       
+       [...altTipoUnidadeProduto].forEach(opcao =>{
+           
+           if(valoresFilhosTr[2].innerText == opcao.innerText){
+               
+               opcao.selected = true;
+               
+           }
+            
+        });
+        
+    });*/
+
 </script>
 </html>

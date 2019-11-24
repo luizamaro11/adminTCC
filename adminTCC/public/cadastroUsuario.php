@@ -52,95 +52,101 @@
     <link rel="stylesheet" href="css/estiloCadastro.css">
 </head>
 <body>
-    <div class="container-fluid">           
-        <form action="php_action/createUsuario.php" method="post">
-            <div class="row titulo">
-                <div class="col-md-12">
-                    <h1>Cadastrar</h1>
+    <div class="container-fluid">
+        <div class="col-md-5 boxLogin">
+            <form action="php_action/createUsuario.php" method="post">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>Cadastrar</h1>
+                    </div>
                 </div>
-            </div>
+                
+                <div class="row">
+                    <div class="col-md-12">
+                        <label>Nome</label>
+                        <input type="text" name="nomePessoa" class="form-control">
+                    </div>
+                    
+                    <div class="col-md-12">
+                        <label>Telefone</label>
+                        <input type="number" name="nrPessoa" class="form-control">
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <label>Usuario</label>
+                        <input type="text" name="nomeUsuario" class="form-control">
+                    </div>
+                    
+                    <!-- aqui vem um select para a opção de administrador ou funcionario -->
+                    
+                    <div class="col-md-6">
+                        <label>Nivel de Acesso</label>
+                        <select class="form-control" name="tipoUsuario">
+                          <option selected="selected" value="administrador">Administrador</option>
+                          <option value="funcionario">Funcionario</option>
+                        </select>
+                    </div>
+                    
+                    <div class="col-md-12">
+                        <label>E-mail</label>
+                        <input type="text" name="email" class="form-control">
+                    </div>
+                    
+                    <div class="col-md-12">
+                        <label>Senha</label>
+                        <input type="password" name="senhaUsuario" class="form-control">
+                    </div>
+                    
+                    <div class="col-md-12">
+                        <label>Confirmar Senha</label>
+                        <input type="password" name="confirmSenhaUsuario" class="form-control">
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="link">  
+                            Já tem conta?
+                            <a href="index.php"> Ir para Login </a>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="botao">
+                    <button type="submit" class="form-control" id="cadastrar" name="btnCadastrar">CADASTRAR</button>
+                </div>
+            </form>
             
-            <div class="row">
-                <div class="col-md-12">
-                    <label>Nome</label>
-                    <input type="text" name="nomeUsuario" class="form-control">
-                </div>
-                
-                <div class="col-md-12">
-                    <label>Telefone</label>
-                    <input type="number" name="nrPessoa" class="form-control">
-                </div>
-                
-                <div class="col-md-12">
-                    <label>Email</label>
-                    <input type="text" name="email" class="form-control">
-                </div>
-                
-                <!-- aqui vem um select para a opção de administrador ou funcionario -->
-                
-                <!--<select name="tipoUsuario">
-                    <option value="administrador">Administrador</option>
-                    <option value="funcionario">Funcionário</option>
-                </select>-->
-                
-                <div class="col-md-12">
-                    <label>Nivel de Acesso</label>
-                    <input type="text" name="nivelUsuario" class="form-control">
-                </div>
-                
-                <div class="col-md-12">
-                    <label>Senha</label>
-                    <input type="password" name="senhaUsuario" class="form-control">
-                </div>
-                
-                <div class="col-md-12">
-                    <label>Conf.Senha</label>
-                    <input type="password" name="confirmSenhaUsuario" class="form-control">
-                </div>
-            </div>
+            <?php
             
-            <div class="row">
-                <div class="col-md-12">
-                    <p class="link">  
-                        Já tem conta?
-                        <a href="index.php"> Ir para Login </a>
-                    </p>
-                </div>
-            </div>
-            
-            <div class="botao">
-                <button type="submit" class="form-control" id="cadastrar" name="btnCadastrar">CADASTRAR</button>
-            </div>
-        </form>
-        
-        <?php
-        
-        /*if(isset($_POST["cadastrar"]))
-        { 
-            $cadastrar = $objCadastroUsuario->cadastroUsuario($_POST["nome"], 
-                                                              $_POST['email'], 
-                                                              $_POST['tipoUsuario'],
-                                                              $_POST['telefone'],
-                                                              $_POST['senha']); 
-        }*/
-        
-        ?>
-        
-        <?php
-            /*// mensagem de erro caso as senhas não sejam iguais
-            if(isset($_GET['erro'])) {
-                echo '<div class="alert alert-danger">As senhas devem ser iguais!</div>';
-            }
-            // mensagem de erro caso o login escolhido já exista no banco de dados
-            if(isset($_GET['repetido'])) {
-                echo '<div class="alert alert-danger">Este Login já foi escolhido por outra pessoa!</div>';
-            }
-            // mensagem de sucesso caso o usuario seja cadastrado corretamente
-            if(isset($_GET['success'])) {
-                echo '<div class="alert alert-success">Usuario cadastrado!</div>';
+            /*if(isset($_POST["cadastrar"]))
+            { 
+                $cadastrar = $objCadastroUsuario->cadastroUsuario($_POST["nome"], 
+                                                                $_POST['email'], 
+                                                                $_POST['tipoUsuario'],
+                                                                $_POST['telefone'],
+                                                                $_POST['senha']); 
             }*/
-        ?>
+            
+            ?>
+            
+            <?php
+                /*// mensagem de erro caso as senhas não sejam iguais
+                if(isset($_GET['erro'])) {
+                    echo '<div class="alert alert-danger">As senhas devem ser iguais!</div>';
+                }
+                // mensagem de erro caso o login escolhido já exista no banco de dados
+                if(isset($_GET['repetido'])) {
+                    echo '<div class="alert alert-danger">Este Login já foi escolhido por outra pessoa!</div>';
+                }
+                // mensagem de sucesso caso o usuario seja cadastrado corretamente
+                if(isset($_GET['success'])) {
+                    echo '<div class="alert alert-success">Usuario cadastrado!</div>';
+                }*/
+            ?>
         
+        </div>
+        <div class="col-md-7 fundo"></div>
     </div>
     <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
