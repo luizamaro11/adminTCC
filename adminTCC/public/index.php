@@ -1,12 +1,8 @@
 <?php
-
-require_once("../src/classes/Usuario.php");
-
-$objConnection = new Conexao();
-$objLogin = new Usuario();
-
+    require_once("../src/classes/Usuario.php");
+    $objConnection = new Conexao();
+    $objLogin = new Usuario();
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -20,13 +16,14 @@ $objLogin = new Usuario();
 </head>
 <body>
     
-    <div class="container-fluid">           
-        <div class="box">
-            <div class="row titulo">
-                <div class="col-md-12">
-                    <h1>Entrar</h1>
+    <div class="container-fluid">
+        <div class="col-md-5 boxLogin">          
+            
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>Entrar</h1>
+                    </div>
                 </div>
-            </div>
             
             <form action="#" method="post">
                 <div class="row">
@@ -62,27 +59,28 @@ $objLogin = new Usuario();
             
             <?php
             
-            if(isset($_POST["Entrar"]) && $_POST["Entrar"] == "ENTRAR")
-            { 
-                $logar = $objLogin->login($_POST["usuario"], $_POST['senha']);
-            }
+                if(isset($_POST["Entrar"]) && $_POST["Entrar"] == "ENTRAR")
+                { 
+                    $logar = $objLogin->login($_POST["usuario"], $_POST['senha']);
+                }
             
             ?>
-            
-            <?php
-                
-            if (isset($logar)){
-                echo $logar;
-            } 
+
+            <?php    
+                if (isset($logar)){
+                    echo $logar;
+                } 
             
             ?>
-            
-            
+        
         </div>
+
+        <div class="col-md-7 fundo">
+        
+        </div>
+        
     </div>
-   
-    
-</body>
     <script src="js/jquery-3.3.1.min.js"></script>
-   
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+</body>
 </html>

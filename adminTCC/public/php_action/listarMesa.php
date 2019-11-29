@@ -1,5 +1,5 @@
 <?php
-
+    header('Access-Control-Allow-Origin: *');
     require_once("../../src/includes/conexao.php");
 
     $conn = new Conexao();
@@ -17,20 +17,3 @@
 
     echo json_encode($mesas, JSON_UNESCAPED_UNICODE); 
     
-   /* $registro = array(
-		'mesas' => array() 
-	);
-
-	$i = 0;
-
-	while($linha = mysqli_fetch_assoc($query)){
-		$registro['mesas'][$i] = array(
-			'mesa' => $linha['nrMesa'],
-		);
-			
-		$i++;
-	}
-
-	echo json_encode($registro);*/
-
-
