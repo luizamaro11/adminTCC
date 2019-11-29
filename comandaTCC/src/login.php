@@ -19,12 +19,10 @@ try{
             'codigoUsuario' => $dados['cd_usuario'],
             'usuario' => $dados['nm_usuario'],
             'senha' => $dados['ds_senha'],
-           );
+        );
            
-         echo json_encode($usuarios);
+        echo json_encode($usuarios);
     }
-    
-    //echo "login efetuado com sucesso";
     
 } catch(Exception $erro){
     echo $erro->getMessage();

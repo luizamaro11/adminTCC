@@ -1,6 +1,5 @@
 <?php 
 
-header('Access-Control-Allow-Origin: *');
 require_once("includes/conexao.php");
     
 $sql = "SELECT nm_cliente FROM pedidos;";

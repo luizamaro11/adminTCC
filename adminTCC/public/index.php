@@ -1,7 +1,7 @@
 <?php
-require_once("../src/classes/Usuario.php");
-$objConnection = new Conexao();
-$objLogin = new Usuario();
+    require_once("../src/classes/Usuario.php");
+    $objConnection = new Conexao();
+    $objLogin = new Usuario();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -59,16 +59,17 @@ $objLogin = new Usuario();
             
             <?php
             
-            if(isset($_POST["Entrar"]) && $_POST["Entrar"] == "ENTRAR")
-            { 
-                $logar = $objLogin->login($_POST["usuario"], $_POST['senha']);
-            }
+                if(isset($_POST["Entrar"]) && $_POST["Entrar"] == "ENTRAR")
+                { 
+                    $logar = $objLogin->login($_POST["usuario"], $_POST['senha']);
+                }
             
             ?>
+
             <?php    
-            if (isset($logar)){
-                echo $logar;
-            } 
+                if (isset($logar)){
+                    echo $logar;
+                } 
             
             ?>
         
@@ -80,5 +81,6 @@ $objLogin = new Usuario();
         
     </div>
     <script src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <?php
     require_once("../src/classes/Usuario.php");
-    /*$objValidacao = new Usuario();
-    $objValidacao->verificarLogin();*/
+    $objValidacao = new Usuario();
+    $objValidacao->verificarLogin();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -23,8 +23,6 @@
                         <li><a href="mesas.php">Mesas</a></li>
                         <li><a href="funcionario.html">Funcionário</a></li>
                         <li><a href="cadastroProdutos.php">Produtos</a></li>
-                        <li><a href="relatorioVendas.html">Relatorio de vendas</a></li>
-                        <li><a href="relatorioEstoque.html">Relatorios de estoque</a></li>
                         <li><a href="index.php">Sair</a></li>
                     </ul>                  
                 </div>
@@ -84,95 +82,6 @@
 
     <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript">
-        
-        let numeroMesa = document.querySelector("#numeroMesa");
-        let btnSalvar = document.querySelector("#salvar");
-        
-        btnSalvar.addEventListener('click', function() {
-            
-            $.ajax({
-                url:'php_action/createMesa.php',
-                type:'POST',
-                data: {objNumeroMesa: numeroMesa.value},
-                success: (data) => {
-                
-                    if(data == 1){
-                   
-                        retornaMesas();
-                   
-                    } else {
-                    
-                        alert('Falha ao Cadastrar o Número da Mesa');
-                    
-                    }
-                
-                }
-            });
-            
-        });
-        
-        $(document).ready(function (){
-           
-           retornaMesas();
-            
-        });
-        
-        function retornaMesas(){
-            
-            $.ajax({
-                url:'php_action/listarMesa.php',
-                type:'POST',
-                success: (data) => {
-                        
-                    let mesas = JSON.parse(data);
-                    let linhaNumeroMesa;
-                    let contadorMesa = 0;
-                            
-                    while (contadorMesa < mesas.length){
-                                
-                    linhaNumeroMesa += `
-                        <tr>
-                            <th scope="row" style="color: lightgreen; font-size: 20px;">Mesa ${mesas[contadorMesa].nrMesa}</th>
-                            <td>
-                                <button id="${mesas[contadorMesa].cdMesa}" onclick="deletaMesa(${mesas[contadorMesa].cdMesa})" class="btn-block btn-info">EXCLUIR</button>
-                            </td>
-                        </tr>`;
-                                
-                    contadorMesa++;
-                                
-                    }
-                            
-                    document.querySelector("#listarMesas").innerHTML = linhaNumeroMesa;
-                          
-                } 
-            
-            });
-            
-        }
-        
-        function deletaMesa(numeroMesa){
-            
-            $.ajax({
-               url:'php_action/deleteMesa.php',
-               type:'POST',
-               data: {numeroMesa:numeroMesa},
-               success: (data) => {
-                
-                if(data == 1){
-                    
-                    alert("Mesa excluída com sucesso");
-                    retornaMesas();
-                }else{
-                    
-                    alert("Falha ao excluir uma mesa");
-                    
-                }
-                
-               }
-            });
-            
-        }
-    </script>
+    <script type="text/javascript" src="js/mesas.js"></script>
 </body>
 </html>

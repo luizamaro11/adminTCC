@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 require_once(dirname(__FILE__). "../../includes/conexao.php");
 
@@ -24,7 +23,7 @@ class Usuario{
         
         try{
 
-            $sql = "SELECT * FROM usuario WHERE nm_nome ='".$usuario."'";
+            $sql = "SELECT * FROM usuario WHERE nm_usuario ='".$usuario."' AND nv_usuario = 'administrador'";
             
             $queryUsuario = mysqli_query($link, $sql);
             
@@ -38,22 +37,21 @@ class Usuario{
                 
                 $dadosUsuario = mysqli_fetch_array($queryUsuario);
                 
-                if($dadosUsuario["ds_senha"] == $senha){
-                
+                if($dadosUsuario["ds_senha"] === $senha){
                     $_SESSION["id_usuario"] = $dadosUsuario["ds_senha"];
                     $_SESSION["logado"] = "sim";
-                    header("Location: ../public/mesas.php");
-                    
+                    echo "<script>window.location.href = '../public/mesas.php';</script>";
+                    /*header("Location: ../../public/mesas.php");*/
                 } else{
                     
-                    $Erro = "Senha e/ou Email errado(s)!";
+                    $Erro = "Senha e/ou Email errado(s)! ou nivel de acesso não autorizado!";
                     return $Erro;
                     
                 }
                 
             } else{
                 
-                $Erro = "Senha e/ou Email errado(s)!";
+                $Erro = "Senha e/ou Email errado(s) ou nivel de acesso não autorizado!";
                 return $Erro;
             }
             
@@ -139,3 +137,4 @@ class Usuario{
     
     
 }
+?>

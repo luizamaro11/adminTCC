@@ -2,9 +2,9 @@
 
 class Conexao{
     private $host = "localhost";
-    private $user = "root";
-    private $pass = "usbw";
-    private $db   = "quiosque";
+    private $user = "id11557205_codetech";
+    private $pass = "CodeTech#123";
+    private $db   = "id11557205_quiosque";
     
     /*public function __construct($host, $user, $pass, $db){
         $this->host = "localhost";
