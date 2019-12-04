@@ -2,7 +2,7 @@
 
 require_once("includes/conexao.php");
     
-$sql = "SELECT nm_cliente FROM pedidos;";
+$sql = "SELECT nm_cliente, cd_pedidos FROM pedidos;";
     
 $query = mysqli_query($conn, $sql) or die ("Falha ao Listar os clientes das comandas, por favor entrar em contato com o suporte. ERRO: " . mysqli_error($conexao));;
    
